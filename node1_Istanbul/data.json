@@ -7,12 +7,7 @@
         "description": "A cozy 2-bedroom apartment in a quiet neighborhood",
         "reservations": [
             {
-                "user_email": "berke@gmail.com",
-                "start_date": "2025-06-01",
-                "end_date": "2025-06-05"
-            },
-            {
-                "user_email": "birgul@gmail.com",
+                "user_email": "user1@example.com",
                 "start_date": "2025-06-10",
                 "end_date": "2025-06-15"
             }
@@ -24,7 +19,23 @@
         "location": "Istanbul",
         "price": 3500,
         "description": "Fully furnished studio, ideal for single tenants",
-        "reservations": []
+        "reservations": [
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-10",
+                "end_date": "2025-07-11"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-12",
+                "end_date": "2025-07-13"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-14",
+                "end_date": "2025-07-15"
+            }
+        ]
     },
     {
         "house_id": 3,

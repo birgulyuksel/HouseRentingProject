@@ -118,6 +118,34 @@ def search_houses():
         print(f"ID: {house['house_id']} | {house['title']} | {house['price']}₺ | Status: {status}")
         print(f"    {house['description']}")
         print("-" * 60)
+        
+def update_reservation():
+    city = choose_city()
+    if not city:
+        return
+
+    house_id = input("House ID of the reservation: ")
+    email = input("Your email: ")
+    old_start = input("Old start date (YYYY-MM-DD): ")
+    old_end = input("Old end date (YYYY-MM-DD): ")
+    new_start = input("New start date (YYYY-MM-DD): ")
+    new_end = input("New end date (YYYY-MM-DD): ")
+
+    response = requests.post(f"{NODES[city]}/update", json={
+        "house_id": int(house_id),
+        "user_email": email,
+        "old_start_date": old_start,
+        "old_end_date": old_end,
+        "new_start_date": new_start,
+        "new_end_date": new_end
+    })
+
+    try:
+        print(response.json()["message"])
+    except Exception as e:
+        print("An error occurred:", e)
+        print("Server response:", response.text)
+
 
 def view_my_reservations():
     city = choose_city()
@@ -167,6 +195,7 @@ def main():
         print("5. Search for a house")
         print("6. View my reservations")
         print("7. View city statistics")
+        print("8. Update an existing reservation")
         print("0. Exit")
         choice = input("Choose an option: ")
 
@@ -184,6 +213,8 @@ def main():
             view_my_reservations()
         elif choice == "7":
             view_city_stats()
+        elif choice == "8":
+            update_reservation()
         elif choice == "0":
             print("Goodbye!")
             break
