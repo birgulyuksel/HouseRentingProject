@@ -1,0 +1,61 @@
+[
+    {
+        "house_id": 1,
+        "title": "2 Bedroom Apartment",
+        "location": "Istanbul",
+        "price": 5000,
+        "description": "A cozy 2-bedroom apartment in a quiet neighborhood",
+        "reservations": [
+            {
+                "user_email": "berke@gmail.com",
+                "start_date": "2025-06-01",
+                "end_date": "2025-06-05"
+            },
+            {
+                "user_email": "birgul@gmail.com",
+                "start_date": "2025-06-10",
+                "end_date": "2025-06-15"
+            }
+        ]
+    },
+    {
+        "house_id": 2,
+        "title": "Studio Flat",
+        "location": "Istanbul",
+        "price": 3500,
+        "description": "Fully furnished studio, ideal for single tenants",
+        "reservations": []
+    },
+    {
+        "house_id": 3,
+        "title": "3 Bedroom Duplex",
+        "location": "Istanbul",
+        "price": 7500,
+        "description": "Spacious duplex with balcony and sea view",
+        "reservations": []
+    },
+    {
+        "house_id": 4,
+        "title": "Furnished Loft",
+        "location": "Istanbul",
+        "price": 6200,
+        "description": "Modern loft near the city center, fully equipped",
+        "reservations": []
+    },
+    {
+        "house_id": 5,
+        "title": "1 Bedroom Garden Flat",
+        "location": "Istanbul",
+        "price": 4000,
+        "description": "Ground floor flat with access to private garden",
+        "reservations": []
+    },
+    {
+        "house_id": 6,
+        "title": "Penthouse Suite",
+        "location": "Istanbul",
+        "price": 11000,
+        "description": "Luxury penthouse with rooftop terrace and smart home features",
+        "reservations": []
+    }
+]

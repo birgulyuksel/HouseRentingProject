@@ -1,0 +1,50 @@
+[
+    {
+        "house_id": 1,
+        "title": "Beachside Apartment",
+        "location": "Izmir",
+        "price": 7800,
+        "description": "Sea view, fully furnished, 2 minutes from the beach",
+        "reservations": []
+    },
+    {
+        "house_id": 2,
+        "title": "Cozy Loft in Alsancak",
+        "location": "Izmir",
+        "price": 6000,
+        "description": "Trendy area, near cafes and bars",
+        "reservations": []
+    },
+    {
+        "house_id": 3,
+        "title": "4 Bedroom Villa",
+        "location": "Izmir",
+        "price": 12000,
+        "description": "Spacious villa with garden and private parking",
+        "reservations": []
+    },
+    {
+        "house_id": 4,
+        "title": "Modern 1+1 Apartment",
+        "location": "Izmir",
+        "price": 5500,
+        "description": "Fully equipped kitchen, balcony with city view",
+        "reservations": []
+    },
+    {
+        "house_id": 5,
+        "title": "Student Studio",
+        "location": "Izmir",
+        "price": 3200,
+        "description": "Affordable studio close to university campus",
+        "reservations": []
+    },
+    {
+        "house_id": 6,
+        "title": "Luxury Duplex",
+        "location": "Izmir",
+        "price": 9900,
+        "description": "Two floors, stylish design, close to the marina",
+        "reservations": []
+    }
+]

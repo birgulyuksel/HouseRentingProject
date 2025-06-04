@@ -1,0 +1,50 @@
+[
+    {
+        "house_id": 1,
+        "title": "1+1 Apartment in City Center",
+        "location": "Ankara",
+        "price": 4200,
+        "description": "Modern apartment with great transportation access",
+        "reservations": []
+    },
+    {
+        "house_id": 2,
+        "title": "3 Bedroom Family Flat",
+        "location": "Ankara",
+        "price": 6200,
+        "description": "Ideal for families, near school zone",
+        "reservations": []
+    },
+    {
+        "house_id": 3,
+        "title": "Basement Studio",
+        "location": "Ankara",
+        "price": 3000,
+        "description": "Budget-friendly option, centrally located",
+        "reservations": []
+    },
+    {
+        "house_id": 4,
+        "title": "Luxury 2+1 Apartment",
+        "location": "Ankara",
+        "price": 7000,
+        "description": "Fully furnished with smart home features",
+        "reservations": []
+    },
+    {
+        "house_id": 5,
+        "title": "Garden Floor Flat",
+        "location": "Ankara",
+        "price": 3900,
+        "description": "Calm area, close to public parks",
+        "reservations": []
+    },
+    {
+        "house_id": 6,
+        "title": "Penthouse with Terrace",
+        "location": "Ankara",
+        "price": 9500,
+        "description": "Spacious penthouse with city view terrace",
+        "reservations": []
+    }
+]
