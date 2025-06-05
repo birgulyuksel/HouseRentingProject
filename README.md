@@ -39,6 +39,7 @@ HouseRentingProject/
 │   ├── stres_test_1.py
 │   ├── stres_test_2.py
 │   └── stres_test_3.py
+│   └── stres_test_4.py
 ├── schema.png             # ER diagram
 ├── report.pdf             # Project report
 └── README.md
