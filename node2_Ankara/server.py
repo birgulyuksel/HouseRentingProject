@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 import json
 import os
+from threading import Lock
+lock = Lock()
 
 app = Flask(__name__)
 DATA_FILE = "data.json"
@@ -103,6 +105,7 @@ def get_available_houses():
 
 @app.route("/reserve", methods=["POST"])
 def reserve_house():
+  with lock:
     body = request.json
     house_id = body.get("house_id")
     user_email = body.get("user_email")

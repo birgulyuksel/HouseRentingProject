@@ -34,6 +34,16 @@
                 "user_email": "fastuser@example.com",
                 "start_date": "2025-07-14",
                 "end_date": "2025-07-15"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-16",
+                "end_date": "2025-07-17"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-18",
+                "end_date": "2025-07-19"
             }
         ]
     },
