@@ -5,13 +5,7 @@
         "location": "Istanbul",
         "price": 5000,
         "description": "A cozy 2-bedroom apartment in a quiet neighborhood",
-        "reservations": [
-            {
-                "user_email": "client2@example.com",
-                "start_date": "2025-11-01",
-                "end_date": "2025-11-05"
-            }
-        ]
+        "reservations": []
     },
     {
         "house_id": 2,
@@ -19,13 +13,7 @@
         "location": "Istanbul",
         "price": 3500,
         "description": "Fully furnished studio, ideal for single tenants",
-        "reservations": [
-            {
-                "user_email": "client1@example.com",
-                "start_date": "2025-11-01",
-                "end_date": "2025-11-05"
-            }
-        ]
+        "reservations": []
     },
     {
         "house_id": 3,
@@ -33,13 +21,7 @@
         "location": "Istanbul",
         "price": 7500,
         "description": "Spacious duplex with balcony and sea view",
-        "reservations": [
-            {
-                "user_email": "client2@example.com",
-                "start_date": "2025-11-01",
-                "end_date": "2025-11-05"
-            }
-        ]
+        "reservations": []
     },
     {
         "house_id": 4,
