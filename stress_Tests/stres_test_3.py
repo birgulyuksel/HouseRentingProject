@@ -1,38 +1,44 @@
 import requests
+import threading
+import random
 import time
 
-URL_RESERVE = "http://localhost:5001/reserve"
-URL_CANCEL = "http://localhost:5001/cancel"
+# Stress Test 3: Immediate occupancy of all seats/reservations on 2 clients.
 
-email = "loopuser@example.com"
-house_id = 3
-start_date = "2025-08-01"
-end_date = "2025-08-05"
-attempts = 10  # kaç kez tekrar etsin?
+URL = "http://localhost:5001"
+house_ids = [1, 2, 3, 4, 5, 6]
+emails = ["user1@example.com", "user2@example.com"]
 
-def reserve():
-    return requests.post(URL_RESERVE, json={
-        "house_id": house_id,
-        "user_email": email,
-        "start_date": start_date,
-        "end_date": end_date
-    })
+def reserve(email, house_id):
+    # ufak gecikme ile adil yarış simülasyonu
+    time.sleep(random.uniform(0, 0.05))
+    try:
+        response = requests.post(f"{URL}/reserve", json={
+            "house_id": house_id,
+            "user_email": email,
+            "start_date": "2025-08-01",
+            "end_date": "2025-08-05"
+        })
+        try:
+            msg = response.json().get("message", response.text)
+        except:
+            msg = f"(Non-JSON Response) {response.status_code} | {response.text}"
+        print(f"[{email}] house {house_id} → {msg}")
+    except Exception as e:
+        print(f"[{email}] ERROR: {e}")
 
-def cancel():
-    return requests.post(URL_CANCEL, json={
-        "house_id": house_id,
-        "user_email": email,
-        "start_date": start_date,
-        "end_date": end_date
-    })
+# thread'leri karıştırarak adil dağılım simülasyonu
+threads = []
 
-for i in range(1, attempts + 1):
-    print(f"\n🔁 Loop {i}: Reserving...")
-    r1 = reserve()
-    print("→", r1.json().get("message", r1.text))
+for house_id in house_ids:
+    t1 = threading.Thread(target=reserve, args=("user1@example.com", house_id))
+    t2 = threading.Thread(target=reserve, args=("user2@example.com", house_id))
+    threads.extend([t1, t2])
 
-    print("🔁 Cancelling...")
-    r2 = cancel()
-    print("→", r2.json().get("message", r2.text))
+random.shuffle(threads)  # aynı anda farklı sırada başlasınlar
 
-    time.sleep(0.5)  # çok hızlı olmaması için küçük bir bekleme
+for t in threads:
+    t.start()
+
+for t in threads:
+    t.join()

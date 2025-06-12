@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from cassandra.cluster import Cluster
 from datetime import datetime
+from threading import Lock
+lock = Lock()
 
 # Cassandra bağlantısı
 cluster = Cluster(['127.0.0.1'])
@@ -14,20 +16,35 @@ app = Flask(__name__)
 
 # Yardımcı fonksiyon: Tarih çakışması var mı?
 def is_available(house_id, start_date, end_date):
-    start = datetime.strptime(start_date, "%Y-%m-%d")
-    end = datetime.strptime(end_date, "%Y-%m-%d")
+    try:
+        start = datetime.strptime(start_date, "%Y-%m-%d").date()
+        end = datetime.strptime(end_date, "%Y-%m-%d").date()
 
-    rows = session.execute("""
-        SELECT start_date, end_date FROM reservations
-        WHERE city=%s AND house_id=%s
-    """, (CITY, house_id))
+        rows = session.execute("""
+            SELECT start_date, end_date FROM reservations
+            WHERE city=%s AND house_id=%s
+        """, (CITY, house_id))
 
-    for row in rows:
-        existing_start = row.start_date
-        existing_end = row.end_date
-        if start <= existing_end and end >= existing_start:
-            return False
-    return True
+        for res in rows:
+            existing_start = res.start_date
+            existing_end = res.end_date
+
+            # Cassandra bazen datetime döndürür
+            if hasattr(existing_start, 'date'):
+                existing_start = existing_start.date()
+            if hasattr(existing_end, 'date'):
+                existing_end = existing_end.date()
+
+            # ÇAKIŞMA KONTROLÜ:
+            if start <= existing_end and end >= existing_start:
+                print(f"❌ Çakışma: {start_date}-{end_date} ↔ {existing_start}-{existing_end}")
+                return False
+
+        return True
+    except Exception as e:
+        print("Error in is_available():", e)
+        return False
+
 
 
 @app.route("/houses", methods=["GET"])
@@ -81,25 +98,30 @@ def get_available_houses():
 
 @app.route("/reserve", methods=["POST"])
 def reserve_house():
-    body = request.json
-    house_id = body.get("house_id")
-    user_email = body.get("user_email")
-    start_date = body.get("start_date")
-    end_date = body.get("end_date")
+    with lock:
+        try:
+            body = request.json
+            house_id = body.get("house_id")
+            user_email = body.get("user_email")
+            start_date = body.get("start_date")
+            end_date = body.get("end_date")
 
-    if not all([house_id, user_email, start_date, end_date]):
-        return jsonify({"message": "Missing required fields."}), 400
+            if not all([house_id, user_email, start_date, end_date]):
+                return jsonify({"message": "Missing required fields."}), 400
 
-    if not is_available(house_id, start_date, end_date):
-        return jsonify({"message": "House is already booked for selected dates."}), 409
+            if not is_available(house_id, start_date, end_date):
+                return jsonify({"message": "House is already booked for selected dates."}), 409
 
-    session.execute("""
-        INSERT INTO reservations (city, house_id, user_email, start_date, end_date)
-        VALUES (%s, %s, %s, %s, %s)
-    """, (CITY, house_id, user_email, start_date, end_date))
+            session.execute("""
+                INSERT INTO reservations (city, house_id, user_email, start_date, end_date)
+                VALUES (%s, %s, %s, %s, %s)
+            """, (CITY, house_id, user_email, start_date, end_date))
 
-    return jsonify({"message": "Reservation successful!"})
+            return jsonify({"message": "Reservation successful!"})
 
+        except Exception as e:
+            print("ERROR in /reserve:", e)
+            return jsonify({"message": "Internal server error", "error": str(e)}), 500
 
 @app.route("/cancel", methods=["POST"])
 def cancel_reservation():
