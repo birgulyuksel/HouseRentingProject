@@ -5,7 +5,18 @@
         "location": "Istanbul",
         "price": 5000,
         "description": "A cozy 2-bedroom apartment in a quiet neighborhood",
-        "reservations": []
+        "reservations": [
+            {
+                "user_email": "user1@example.com",
+                "start_date": "2025-06-10",
+                "end_date": "2025-06-15"
+            },
+            {
+                "user_email": "client2@example.com",
+                "start_date": "2025-11-01",
+                "end_date": "2025-11-05"
+            }
+        ]
     },
     {
         "house_id": 2,
@@ -13,7 +24,38 @@
         "location": "Istanbul",
         "price": 3500,
         "description": "Fully furnished studio, ideal for single tenants",
-        "reservations": []
+        "reservations": [
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-10",
+                "end_date": "2025-07-11"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-12",
+                "end_date": "2025-07-13"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-14",
+                "end_date": "2025-07-15"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-16",
+                "end_date": "2025-07-17"
+            },
+            {
+                "user_email": "fastuser@example.com",
+                "start_date": "2025-07-18",
+                "end_date": "2025-07-19"
+            },
+            {
+                "user_email": "client1@example.com",
+                "start_date": "2025-11-01",
+                "end_date": "2025-11-05"
+            }
+        ]
     },
     {
         "house_id": 3,
@@ -21,7 +63,13 @@
         "location": "Istanbul",
         "price": 7500,
         "description": "Spacious duplex with balcony and sea view",
-        "reservations": []
+        "reservations": [
+            {
+                "user_email": "client2@example.com",
+                "start_date": "2025-11-01",
+                "end_date": "2025-11-05"
+            }
+        ]
     },
     {
         "house_id": 4,

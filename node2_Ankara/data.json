@@ -13,7 +13,13 @@
         "location": "Ankara",
         "price": 6200,
         "description": "Ideal for families, near school zone",
-        "reservations": []
+        "reservations": [
+            {
+                "user_email": "birgul@gmail.com",
+                "start_date": "2025-08-02",
+                "end_date": "2025-08-05"
+            }
+        ]
     },
     {
         "house_id": 3,
